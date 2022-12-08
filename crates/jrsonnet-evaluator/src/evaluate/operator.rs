@@ -149,13 +149,13 @@ pub fn evaluate_binary_op_normal(a: &Val, op: BinaryOpType, b: &Val) -> Result<V
 			if *v2 < 0.0 {
 				throw!("shift by negative exponent")
 			}
-			Num(f64::from((*v1 as i32) << (*v2 as i32)))
+			Num(((*v1 as i64) << (*v2 as i64)) as f64)
 		}
 		(Num(v1), Rhs, Num(v2)) => {
 			if *v2 < 0.0 {
 				throw!("shift by negative exponent")
 			}
-			Num(f64::from((*v1 as i32) >> (*v2 as i32)))
+			Num(((*v1 as i64) >> (*v2 as i64)) as f64)
 		}
 
 		_ => throw!(BinaryOperatorDoesNotOperateOnValues(
